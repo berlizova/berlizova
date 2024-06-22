@@ -1,0 +1,19 @@
+<section id="staff" class="section-bg">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Staff</h2>
+        </div>
+        <div class="row">
+            {% for member in staff %}
+                <div class="col-lg-4 col-md-6 person">
+                    {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
+                    {% endif %}
+                    <h3>{{ member.name }}</h3>
+                    <p>{{ member.position }}</p>
+                    <p>{{ member.bio|safe }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

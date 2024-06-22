@@ -1,0 +1,334 @@
+/* main.css */
+
+/* Set main reusable colors and fonts using CSS variables */
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Amatic SC", sans-serif;
+    --font-secondary: "Inter", sans-serif;
+    --color-default: #212529;
+    --color-primary: #ce1212;
+    --color-secondary: #37373f;
+    scroll-behavior: smooth;
+}
+
+/* General styles */
+body {
+    font-family: var(--font-default);
+    color: var(--color-default);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ec2727;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+}
+
+/* Header */
+.header {
+    background: #fff;
+    transition: all 0.5s;
+    z-index: 997;
+    height: 90px;
+    border-bottom: 1px solid #fff;
+}
+
+.header .logo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+    font-family: var(--font-secondary);
+}
+
+.header .logo h1 span {
+    color: var(--color-primary);
+}
+
+.header .btn-book-a-table {
+    font-size: 14px;
+    color: #fff;
+    background: var(--color-primary);
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.header .btn-book-a-table:hover {
+    background: #e14d06;
+}
+
+/* Navbar */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    color: #7f7f90;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #000;
+}
+
+.navbar .dropdown ul {
+    display: none;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    padding: 10px 0;
+    z-index: 99;
+    border-radius: 4px;
+}
+
+.navbar .dropdown ul li {
+    min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.navbar .dropdown ul a:hover {
+    color: var(--color-primary);
+}
+
+.navbar .dropdown:hover > ul {
+    display: block;
+}
+
+/* Login Section */
+.login-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.book-a-table .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.book-a-table button {
+    background: #ff5e13;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-a-table button:hover {
+    background: #e14d06;
+}
+
+/* Sections & Section Header */
+section {
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.section-bg {
+    background-color: #eee;
+}
+
+.section-header {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #7f7f90;
+    text-transform: uppercase;
+    font-family: var(--font-default);
+}
+
+.section-header p {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 400;
+    font-family: var(--font-primary);
+}
+
+.section-header p span {
+    color: var(--color-primary);
+}
+
+/* Products and Persons */
+.product, .person {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product h3, .person h3 {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+}
+
+.product p, .person p {
+    font-family: var(--font-default);
+    color: #6c757d;
+}
+
+.product button, .person button {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover, .person button:hover {
+    background: #e14d06;
+}
+
+/* Contact Section */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.info-box {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    flex: 1;
+    min-width: 250px;
+    transition: 0.3s;
+}
+
+.info-box i {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.info-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+}
+
+.info-box p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.info-box:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background-color: #1f1f24;
+    padding: 50px 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer .footer-links {
+    margin-bottom: 30px;
+}
+
+.footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-links ul li {
+    padding: 10px 0;
+}
+
+.footer .footer-links ul a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: 0.3s;
+}
+
+.footer .footer-links ul a:hover {
+    color: #fff;
+}
+
+.footer .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.footer .copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .credits {
+    text-align: center;
+    font-size: 13px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Simple Online Store{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="logo"><a href="{% url 'index' %}">Online <span>Store</span></a></h1>
+            <nav id="navbar" class="navbar">
+                <ul class="nav">
+                    <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="#staff" class="nav-link">Staff</a></li>
+                    <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
+                    <li class="nav-item"><a href="#reviews" class="nav-link">News</a></li>
+                    <li class="nav-item"><a href="#cart" class="nav-link">Cart</a></li>
+                </ul>
+            </nav>
+            <a href="#login" class="login-link">Login</a>
+        </div>
+    </header>
+
+    <main id="main" class="mt-5">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2024 Online Store. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
