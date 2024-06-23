@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<section id="product-detail" class="section-bg">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ product.name }}</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                {% if product.photo %}
+                    <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="img-fluid">
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }} USD</p>
+                <form method="post" action="{% url 'add_to_cart' product.pk %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
