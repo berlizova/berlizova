@@ -7,7 +7,9 @@ from .views import (
     category_detail,
     all_news_view,
     all_staff_view,
-    add_to_cart
+    add_to_cart,
+    view_cart,
+    checkout
 )
 
 app_name = 'shop'
@@ -21,4 +23,6 @@ urlpatterns = [
     path('all_news/', all_news_view, name='all_news'),
     path('all_staff/', all_staff_view, name='all_staff'),
     path('add_to_cart/<int:pk>/', add_to_cart, name='add_to_cart'),
+    path('cart/', view_cart, name='view_cart'),
+    path('checkout/', checkout, name='checkout'),
 ]

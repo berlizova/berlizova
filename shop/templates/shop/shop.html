@@ -1,10 +1,19 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    {% include 'shop/products.html' %}
-    {% include 'shop/staff.html' %}
-    {% include 'shop/contacts.html' %}
-    {% include 'shop/reviews.html' %}
-    {% include 'shop/cart.html' %}
+    <section id="products" class="section-bg">
+        {% include 'shop/products.html' %}
+    </section>
 
+    <section id="staff" class="section-bg">
+        {% include 'shop/staff.html' %}
+    </section>
+
+    <section id="reviews" class="section-bg">
+        {% include 'shop/reviews.html' %}
+    </section>
+
+    <section id="contacts" class="section-bg">
+        {% include 'shop/contacts.html' %}
+    </section>
 {% endblock %}

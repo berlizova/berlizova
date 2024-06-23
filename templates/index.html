@@ -18,14 +18,16 @@
                     <li class="nav-item"><a href="{% url 'shop:shop' %}#staff" class="nav-link">Staff</a></li>
                     <li class="nav-item"><a href="{% url 'shop:shop' %}#contacts" class="nav-link">Contacts</a></li>
                     <li class="nav-item"><a href="{% url 'shop:shop' %}#reviews" class="nav-link">News</a></li>
-                    <li class="nav-item"><a href="{% url 'shop:shop' %}#cart" class="nav-link">Cart</a></li>
                 </ul>
             </nav>
-            {% if user.is_authenticated %}
-                <a href="{% url 'account:logout' %}" class="login-link">Logout</a>
-            {% else %}
-                <a href="{% url 'account:login' %}" class="login-link">Login</a>
-            {% endif %}
+            <div class="d-flex align-items-center">
+                <a href="{% url 'shop:view_cart' %}" class="btn btn-outline-primary me-2">Cart</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'account:logout' %}" class="btn btn-outline-secondary">Logout</a>
+                {% else %}
+                    <a href="{% url 'account:login' %}" class="btn btn-outline-secondary">Login</a>
+                {% endif %}
+            </div>
         </div>
     </header>
 

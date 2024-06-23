@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 from .forms import RegisterForm
 from django.contrib import messages
 
+
 class RegisterView(CreateView):
     template_name = 'register.html'
     form_class = RegisterForm
@@ -18,6 +19,7 @@ class RegisterView(CreateView):
     def form_invalid(self, form):
         messages.error(self.request, 'Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.')
         return self.render_to_response(self.get_context_data(form=form))
+
 
 class MyLoginView(LoginView):
     template_name = 'log.html'
@@ -33,6 +35,7 @@ class MyLoginView(LoginView):
 
     def get_success_url(self):
         return self.request.GET.get('next', '/')
+
 
 def logout_view(request):
     logout(request)
