@@ -21,10 +21,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shop.urls')),  # Путь к вашему приложению
-    path('ckeditor/', include('ckeditor_uploader.urls')),  # Путь к CKEditor
+    path('', include('shop.urls')),
+    path('account/', include('account.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.conf import settings
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

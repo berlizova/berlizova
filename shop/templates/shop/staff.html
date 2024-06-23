@@ -6,21 +6,15 @@
         <div class="row">
             {% for member in staff %}
                 <div class="col-lg-4 col-md-6 person">
-                    <a href="{% url 'staff_detail' member.pk %}">
+                    <a href="{% url 'shop:staff_detail' member.pk %}">
                         {% if member.photo %}
                             <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
                         {% endif %}
                         <h3>{{ member.name }}</h3>
+                        <p>{{ member.position }}</p>
                     </a>
-                    <p>{{ member.position }}</p>
-                    <p>{{ member.bio|safe }}</p>
                 </div>
             {% endfor %}
-            {% if all_staff.count > 3 %}
-                <div class="col-12">
-                    <a href="{% url 'all_staff' %}">See more staff...</a>
-                </div>
-            {% endif %}
         </div>
     </div>
 </section>

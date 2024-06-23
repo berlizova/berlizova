@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import ProdCategory, Prod, Contacts, Staff, News
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
+from django.views.generic import CreateView
 from django.views.decorators.http import require_POST
+from account.forms import RegisterForm
+from .models import ProdCategory, Prod, Contacts, Staff, News
 
 
 def shop_view(request):
@@ -38,6 +42,28 @@ def news_detail(request, pk):
 def staff_detail(request, pk):
     staff_member = get_object_or_404(Staff, pk=pk)
     return render(request, 'shop/staff_detail.html', {'staff_member': staff_member})
+
+
+class RegisterView(CreateView):
+    template_name = 'register.html'
+    form_class = RegisterForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return redirect(self.get_success_url())
+
+
+class MyLoginView(LoginView):
+    template_name = 'log.html'
+
+    def get_success_url(self):
+        return self.request.GET.get('next', '/')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('shop:index')
 
 
 @require_POST

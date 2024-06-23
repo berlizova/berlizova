@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
-    'shop',  # Ваше приложение
+    'shop',
+    'account.apps.AccountConfig'
 ]
 
 MIDDLEWARE = [

@@ -1,25 +1,18 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="category-products" class="section-bg">
+<section id="product-detail" class="section-bg">
     <div class="container">
         <div class="section-header">
-            <h2>{{ category.name }}</h2>
+            <h2>{{ product.name }}</h2>
         </div>
         <div class="row">
-            {% for product in products %}
-                <div class="col-lg-4 col-md-6 product">
-                    {% if product.photo %}
-                        <a href="{% url 'product_detail' product.pk %}">
-                            <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="img-fluid">
-                        </a>
-                    {% endif %}
-                    <h3><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h3>
-                    <p>{{ product.description }}</p>
-                    <p>{{ product.price }} USD</p>
-                </div>
-            {% endfor %}
+            <div class="col-lg-8">
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }} USD</p>
+            </div>
         </div>
     </div>
 </section>
 {% endblock %}
+

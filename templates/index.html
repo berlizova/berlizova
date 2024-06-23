@@ -11,17 +11,21 @@
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="logo"><a href="{% url 'shop' %}">Online <span>Store</span></a></h1>
+            <h1 class="logo"><a href="{% url 'shop:shop' %}">Online <span>Store</span></a></h1>
             <nav id="navbar" class="navbar">
                 <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'shop' %}#products" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="{% url 'shop' %}#staff" class="nav-link">Staff</a></li>
-                    <li class="nav-item"><a href="{% url 'shop' %}#contacts" class="nav-link">Contacts</a></li>
-                    <li class="nav-item"><a href="{% url 'shop' %}#reviews" class="nav-link">News</a></li>
-                    <li class="nav-item"><a href="{% url 'shop' %}#cart" class="nav-link">Cart</a></li>
+                    <li class="nav-item"><a href="{% url 'shop:shop' %}#products" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="{% url 'shop:shop' %}#staff" class="nav-link">Staff</a></li>
+                    <li class="nav-item"><a href="{% url 'shop:shop' %}#contacts" class="nav-link">Contacts</a></li>
+                    <li class="nav-item"><a href="{% url 'shop:shop' %}#reviews" class="nav-link">News</a></li>
+                    <li class="nav-item"><a href="{% url 'shop:shop' %}#cart" class="nav-link">Cart</a></li>
                 </ul>
             </nav>
-            <a href="#login" class="login-link">Login</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'account:logout' %}" class="login-link">Logout</a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="login-link">Login</a>
+            {% endif %}
         </div>
     </header>
 

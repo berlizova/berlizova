@@ -7,14 +7,12 @@
             <h2>{{ staff_member.name }}</h2>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
+                <p>{{ staff_member.position }}</p>
+                <p>{{ staff_member.bio|safe }}</p>
                 {% if staff_member.photo %}
                     <img src="{{ staff_member.photo.url }}" alt="{{ staff_member.name }}" class="img-fluid">
                 {% endif %}
-            </div>
-            <div class="col-lg-6">
-                <p>{{ staff_member.position }}</p>
-                <p>{{ staff_member.bio|safe }}</p>
             </div>
         </div>
     </div>
