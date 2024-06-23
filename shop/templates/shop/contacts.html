@@ -5,34 +5,29 @@
             <p>Need Help? <span>Contact Us</span></p>
         </div>
         <div class="row contact-info">
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="info-box">
-                    <i class="bx bx-map"></i>
-                    <h3>Our Address</h3>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+            {% for contact in contacts %}
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-map"></i>
+                        <h3>Our Address</h3>
+                        <p>{{ contact.address }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-                <div class="info-box">
-                    <i class="bx bx-envelope"></i>
-                    <h3>Email Us</h3>
-                    <p>contact@example.com</p>
+                <div class="col-lg-3 col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>{{ contact.email }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 d-flex align-items-stretch">
-                <div class="info-box">
-                    <i class="bx bx-phone-call"></i>
-                    <h3>Call Us</h3>
-                    <p>+1 5589 55488 55</p>
+                <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Call Us</h3>
+                        <p>{{ contact.phone }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 d-flex align-items-stretch">
-                <div class="info-box">
-                    <i class="bx bx-time-five"></i>
-                    <h3>Opening Hours</h3>
-                    <p>Mon-Sat: 11AM - 23PM;<br>Sunday: Closed</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
