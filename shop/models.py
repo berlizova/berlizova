@@ -60,6 +60,8 @@ class Contacts(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     opening_hours = models.TextField()
+    working_hours = models.TextField(blank=True, null=True)
+    closed_days = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Contact'

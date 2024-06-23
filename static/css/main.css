@@ -263,6 +263,11 @@ section {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Additional Contact Info */
+.info-box .additional-info {
+    margin-top: 20px;
+}
+
 /* Footer */
 .footer {
     background-color: #1f1f24;

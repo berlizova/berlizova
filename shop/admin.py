@@ -29,7 +29,8 @@ class ProdAdmin(admin.ModelAdmin):
 
 @admin.register(Contacts)
 class ContactsAdmin(admin.ModelAdmin):
-    list_display = ('address', 'email', 'phone', 'opening_hours')
+    list_display = ('address', 'email', 'phone', 'opening_hours', 'working_hours', 'closed_days')
+    search_fields = ('address', 'email', 'phone')
 
 
 @admin.register(Staff)
