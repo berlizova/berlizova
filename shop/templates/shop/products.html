@@ -4,11 +4,11 @@
             <h2>Products</h2>
         </div>
         <div class="row">
-            {% for category in categories %}
+            {% for category, products in categories_with_limited_products %}
                 <div class="col-12">
-                    <h3>{{ category.name }}</h3>
+                    <h3><a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a></h3>
                 </div>
-                {% for product in category.prods.all %}
+                {% for product in products %}
                     <div class="col-lg-4 col-md-6 product">
                         {% if product.photo %}
                             <a href="{% url 'product_detail' product.pk %}">
@@ -20,6 +20,11 @@
                         <p>{{ product.price }} USD</p>
                     </div>
                 {% endfor %}
+                {% if category.prods.count > 3 %}
+                    <div class="col-12">
+                        <a href="{% url 'category_detail' category.pk %}">See more...</a>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
