@@ -27,6 +27,16 @@
         <div class="section-footer">
             <p>Еще не зарегистрированы? <a href="{% url 'account:register' %}">Регистрация</a></p>
         </div>
+        <!-- Отображение сообщений об ошибках -->
+        {% if messages %}
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

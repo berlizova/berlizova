@@ -15,7 +15,7 @@
             <div class="col-lg-6">
                 <p>{{ product.description }}</p>
                 <p>{{ product.price }} USD</p>
-                <form method="post" action="{% url 'add_to_cart' product.pk %}">
+                <form method="post" action="{% url 'shop:add_to_cart' product.pk %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="quantity">Quantity</label>
