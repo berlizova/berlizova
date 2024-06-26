@@ -1,1 +1,1 @@
-web: gunicorn berlizova.wsgi --log-file -
+web: gunicorn berlizova.wsgi --log-file - --log-level debug
