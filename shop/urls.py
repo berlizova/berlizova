@@ -9,7 +9,8 @@ from .views import (
     all_staff_view,
     add_to_cart,
     view_cart,
-    checkout
+    checkout,
+
 )
 
 app_name = 'shop'
@@ -25,4 +26,5 @@ urlpatterns = [
     path('add_to_cart/<int:pk>/', add_to_cart, name='add_to_cart'),
     path('cart/', view_cart, name='view_cart'),
     path('checkout/', checkout, name='checkout'),
+
 ]

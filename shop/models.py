@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.db.models import Sum
 
@@ -72,15 +71,15 @@ class Staff(models.Model):
     name = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='staff_photo/', blank=True, null=True)
-    bio = RichTextField()
+    bio = models.TextField(max_length=255)
     is_visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'Персонал магазина'
-        verbose_name_plural = 'Персонал магазина'
+        verbose_name = 'Store employees'
+        verbose_name_plural = 'Store employees'
 
 
 class News(models.Model):
