@@ -13,11 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['berlizova-diplom.herokuapp.com', 'localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '*')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -74,7 +75,17 @@ if DEBUG:
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 else:
-    DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
+
+    db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, conn_health_checks=True)
+    DATABASES['default'].update(db_config)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
