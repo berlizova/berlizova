@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from .forms import RegisterForm
@@ -14,6 +14,11 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+        messages.success(self.request, 'Registration successful. You are now logged in.')
         return redirect(self.get_success_url())
 
     def form_invalid(self, form):
@@ -30,7 +35,7 @@ class MyLoginView(LoginView):
             User.objects.get(username=username)
         except User.DoesNotExist:
             messages.error(self.request, 'User does not exist. Please register')
-            return redirect('account:register')
+            return redirect('register')
         return super().form_valid(form)
 
     def get_success_url(self):

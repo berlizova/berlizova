@@ -11,6 +11,7 @@
                 <form action="{% url 'account:logout' %}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
                     {% csrf_token %}
                     <p>Are you sure? Log out?</p>
+                    <input type="hidden" name="next" value="{{ next }}">
                     <div class="text-center">
                         <button type="submit">Yes, log out</button>
                     </div>
