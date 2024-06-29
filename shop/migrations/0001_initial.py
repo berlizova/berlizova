@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(max_length=255)),
                 ('email', models.EmailField(max_length=254)),
                 ('phone', models.CharField(max_length=15)),
-                ('opening_hours', models.TextField()),
+                ('opening_days', models.CharField(max_length=255, blank=True, null=True)),
             ],
             options={
                 'verbose_name': 'Contact',

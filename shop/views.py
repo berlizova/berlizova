@@ -4,11 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .models import Prod, ProdCategory, Contacts, Staff, News
 from .forms import AddToCartForm
-from account.forms import RegisterForm
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import logout
-from django.views.generic import CreateView
-from django.contrib.auth.models import User
+
 
 
 def shop_view(request):
@@ -70,9 +66,9 @@ def view_cart(request):
 
 @login_required
 def checkout(request):
-    # Обработка оплаты
+    # Payment Processing
     request.session['cart'] = {}
-    messages.success(request, 'Оплата успешно выполнена.')
+    messages.success(request, 'Payment completed successfully.')
     return redirect('shop:view_cart')
 
 
@@ -104,37 +100,3 @@ def all_staff_view(request):
     staff = Staff.objects.all()
     return render(request, 'shop/all_staff.html', {'staff': staff})
 
-
-class RegisterView(CreateView):
-    template_name = 'register.html'
-    form_class = RegisterForm
-    success_url = '/'
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        return redirect(self.get_success_url())
-
-    def form_invalid(self, form):
-        messages.error(self.request, 'Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.')
-        return self.render_to_response(self.get_context_data(form=form))
-
-
-class MyLoginView(LoginView):
-    template_name = 'log.html'
-
-    def form_valid(self, form):
-        username = form.cleaned_data.get('username')
-        try:
-            User.objects.get(username=username)
-        except User.DoesNotExist:
-            messages.error(self.request, 'Пользователь не существует. Пожалуйста, зарегистрируйтесь.')
-            return redirect('account:register')
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return self.request.GET.get('next', '/')
-
-
-def logout_view(request):
-    logout(request)
-    return redirect('shop:shop')

@@ -17,19 +17,19 @@ class RegisterView(CreateView):
         return redirect(self.get_success_url())
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.')
+        messages.error(self.request, 'An error occurred during registration. Please try again.')
         return self.render_to_response(self.get_context_data(form=form))
 
 
 class MyLoginView(LoginView):
-    template_name = 'log.html'
+    template_name = 'login.html'
 
     def form_valid(self, form):
         username = form.cleaned_data.get('username')
         try:
             User.objects.get(username=username)
         except User.DoesNotExist:
-            messages.error(self.request, 'Пользователь не существует. Пожалуйста, зарегистрируйтесь.')
+            messages.error(self.request, 'User does not exist. Please register')
             return redirect('account:register')
         return super().form_valid(form)
 

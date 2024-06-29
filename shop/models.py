@@ -30,8 +30,8 @@ class ProdCategory(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Категория товара'
-        verbose_name_plural = 'Категории товаров'
+        verbose_name = 'Product category'
+        verbose_name_plural = 'Product categories'
         ordering = ['sort']
 
 
@@ -58,7 +58,7 @@ class Contacts(models.Model):
     address = models.CharField(max_length=255)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    opening_hours = models.TextField()
+    opening_days = models.CharField(max_length=255, blank=True, null=True)
     working_hours = models.TextField(blank=True, null=True)
     closed_days = models.CharField(max_length=255, blank=True, null=True)
 
@@ -101,7 +101,7 @@ class Cart(models.Model):
         return self.items.aggregate(Sum('total_price'))['total_price__sum'] or 0
 
     def __str__(self):
-        return f'Корзина пользователя {self.user.username}'
+        return f'User Cart {self.user.username}'
 
 
 class CartItem(models.Model):

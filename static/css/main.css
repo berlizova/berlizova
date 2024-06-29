@@ -126,18 +126,24 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-/* Login Section */
-.login-link {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+/* Login and Cart Section */
+.card {
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000; /* Ensure it stays on top */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.book-a-table .form-control {
+.card-header {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.card-body {
+    font-family: var(--font-default);
+}
+
+.form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -145,8 +151,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
 
-.book-a-table button {
-    background: #ff5e13;
+button {
+    background: var(--color-primary);
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -154,7 +160,7 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-.book-a-table button:hover {
+button:hover {
     background: #e14d06;
 }
 
