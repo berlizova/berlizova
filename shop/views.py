@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-from .models import Prod, ProdCategory, Contacts, Staff, News
+from .models import Prod, ProdCategory, Contacts, Staff, News, Cart
 from .forms import AddToCartForm
-
+from django.urls import reverse
 
 
 def shop_view(request):
@@ -36,7 +36,7 @@ def product_detail(request, pk):
 
 
 @require_POST
-@login_required
+@login_required(login_url='account:login')
 def add_to_cart(request, pk):
     product = get_object_or_404(Prod, pk=pk)
     form = AddToCartForm(request.POST)
@@ -48,11 +48,11 @@ def add_to_cart(request, pk):
         else:
             cart[str(pk)] = quantity
         request.session['cart'] = cart
-        messages.success(request, f'{product.name} добавлен в корзину.')
+        messages.success(request, f'{product.name} Added to cart.')
     return redirect('shop:product_detail', pk=pk)
 
 
-@login_required
+@login_required(login_url='account:login')
 def view_cart(request):
     cart = request.session.get('cart', {})
     products = []
@@ -64,7 +64,7 @@ def view_cart(request):
     return render(request, 'shop/cart.html', {'products': products, 'total_price': total_price})
 
 
-@login_required
+@login_required(login_url='account:login')
 def checkout(request):
     # Payment Processing
     request.session['cart'] = {}
@@ -99,4 +99,3 @@ def all_news_view(request):
 def all_staff_view(request):
     staff = Staff.objects.all()
     return render(request, 'shop/all_staff.html', {'staff': staff})
-

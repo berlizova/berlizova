@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from .views import (
     shop_view,
     product_detail,
@@ -10,7 +11,6 @@ from .views import (
     add_to_cart,
     view_cart,
     checkout,
-
 )
 
 app_name = 'shop'
