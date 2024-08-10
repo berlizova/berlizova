@@ -1,14 +1,16 @@
 import os
-import dj_database_url
-from dotenv import load_dotenv
+import sys
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
 
+
+# Загружаем переменные окружения из файла .env
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DATABASE_URL = os.environ.get('DATABASE_URL')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '*')]
 
@@ -19,14 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',  # Для AWS S3
+    'storages',
     'shop',
     'account',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Для статических файлов
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,6 +62,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'berlizova.wsgi.application'
 
+# Настройки базы данных
 DATABASES = {}
 if DEBUG:
     DATABASES['default'] = {
@@ -75,8 +78,15 @@ else:
         'HOST': os.environ.get('DB_HOST'),
         'PORT': os.environ.get('DB_PORT'),
     }
-    db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, conn_health_checks=True)
+    db_config = dj_database_url.config(conn_max_age=600, conn_health_checks=True)
     DATABASES['default'].update(db_config)
+
+# Если запущены тесты, использовать SQLite
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
