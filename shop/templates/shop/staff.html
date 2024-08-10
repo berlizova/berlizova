@@ -2,6 +2,7 @@
     <div class="container">
         <div class="section-header">
             <h2>Our Staff</h2>
+            <!-- Header section introducing the staff -->
         </div>
         <div class="row">
             {% for member in staff %}
@@ -9,9 +10,11 @@
                     <a href="{% url 'shop:staff_detail' member.pk %}">
                         {% if member.photo %}
                             <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
+                            <!-- Display staff member's photo if available -->
                         {% endif %}
                         <h3>{{ member.name }}</h3>
                         <p>{{ member.position }}</p>
+                        <!-- Display the staff member's name and position -->
                     </a>
                 </div>
             {% endfor %}

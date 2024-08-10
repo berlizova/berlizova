@@ -1,21 +1,28 @@
 <section id="reviews" class="section-bg">
     <div class="container">
+        <!-- Section header displaying the title "News" -->
         <div class="section-header">
             <h2>News</h2>
         </div>
         <div class="row">
+            <!-- Loop through the list of news items -->
             {% for news_item in news %}
                 <div class="col-lg-4 col-md-6">
+                    <!-- Link to the detail page of each news item -->
                     <a href="{% url 'shop:news_detail' news_item.pk %}">
+                        <!-- Display the title of the news item -->
                         <h3>{{ news_item.title }}</h3>
+                        <!-- Display the photo if available -->
                         {% if news_item.photo %}
                             <img src="{{ news_item.photo.url }}" alt="{{ news_item.title }}" class="img-fluid">
                         {% endif %}
                     </a>
+                    <!-- Display the content and publication date of the news item -->
                     <p>{{ news_item.content }}</p>
                     <p>Published on: {{ news_item.created_at }}</p>
                 </div>
             {% endfor %}
+            <!-- Display a "See more news" link if there are more than 3 news items -->
             {% if all_news.count > 3 %}
                 <div class="col-12">
                     <a href="{% url 'shop:all_news' %}">See more news...</a>

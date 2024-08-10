@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character set and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title block to be dynamically overridden by child templates -->
     <title>{% block title %}Simple Online Store{% endblock %}</title>
+    
+    <!-- Load static files for CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="logo"><a href="{% url 'shop:shop' %}">Berlizova Online <span>Store</span></a></h1>
-            <nav id="navbar" class="navbar">
-                <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'shop:shop' %}#products" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="{% url 'shop:shop' %}#staff" class="nav-link">Staff</a></li>
-                    <li class="nav-item"><a href="{% url 'shop:shop' %}#contacts" class="nav-link">Contacts</a></li>
-                    <li class="nav-item"><a href="{% url 'shop:shop' %}#reviews" class="nav-link">News</a></li>
-                </ul>
-            </nav>
-            <div class="d-flex align-items-center">
-                <a href="{% url 'shop:view_cart' %}" class="btn btn-outline-primary me-2">
-                    Cart <span class="badge bg-secondary">{{ cart_count }}</span>
-                </a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'account:logout' %}" class="btn btn-outline-secondary">Logout</a>
-                {% else %}
-                    <a href="{% url 'account:login' %}" class="btn btn-outline-secondary">Login</a>
-                {% endif %}
-            </div>
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
+        
+        <!-- Logo linking back to the homepage -->
+        <h1 class="logo"><a href="{% url 'shop:shop' %}">Berlizova Online <span>Store</span></a></h1>
+        
+        <!-- Navbar with links to different sections of the page -->
+        <nav id="navbar" class="navbar">
+            <ul class="nav">
+                <li class="nav-item"><a href="{% url 'shop:shop' %}#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="{% url 'shop:shop' %}#staff" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="{% url 'shop:shop' %}#contacts" class="nav-link">Contacts</a></li>
+                <li class="nav-item"><a href="{% url 'shop:shop' %}#reviews" class="nav-link">News</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Cart and user authentication buttons -->
+        <div class="d-flex align-items-center">
+            <a href="{% url 'shop:view_cart' %}" class="btn btn-outline-primary me-2">
+                Cart <span class="badge bg-secondary">{{ cart_count }}</span>
+            </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'account:logout' %}" class="btn btn-outline-secondary">Logout</a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="btn btn-outline-secondary">Login</a>
+            {% endif %}
         </div>
-    </header>
+    </div>
+</header>
 
-    <main id="main" class="mt-5">
-        {% block content %}
-        {% endblock %}
-    </main>
+<!-- Main content area where specific page content will be injected -->
+<main id="main" class="mt-5">
+    {% block content %}
+    {% endblock %}
+</main>
 
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="copyright">
-                &copy; 2024 Berlizova Diplom:) All rights reserved.
-            </div>
+<!-- Footer section -->
+<footer id="footer" class="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; 2024 Berlizova Diplom:) All rights reserved.
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <div id="preloader"></div>
+<!-- Scroll to top button -->
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- Preloader (hidden after page loads) -->
+<div id="preloader"></div>
+
+<!-- Load JavaScript files -->
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

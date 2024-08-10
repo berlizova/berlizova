@@ -2,22 +2,27 @@
 
 {% block content %}
     <section id="logout" class="book-a-table">
-    <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <h2>Logout</h2>
-        </div>
-        <div class="row g-0">
-            <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                <form action="{% url 'account:logout' %}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-                    {% csrf_token %}
-                    <p>Are you sure? Log out?</p>
-                    <input type="hidden" name="next" value="{{ next }}">
-                    <div class="text-center">
-                        <button type="submit">Yes, log out</button>
-                    </div>
-                </form>
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Logout</h2>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+                    <!-- Logout confirmation form -->
+                    <form action="{% url 'account:logout' %}" method="post" role="form" class="php-email-form"
+                          data-aos="fade-up" data-aos-delay="100">
+                        {% csrf_token %}
+                        <!-- Confirmation message -->
+                        <p>Are you sure? Log out?</p>
+                        <!-- Hidden input to store the next page URL after logout -->
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <div class="text-center">
+                            <!-- Submit button to confirm logout -->
+                            <button type="submit">Yes, log out</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     </section>
 {% endblock %}

@@ -1,25 +1,31 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="all-news" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h2>All News</h2>
+    <!-- Section for displaying all news items -->
+    <section id="all-news" class="section-bg">
+        <div class="container">
+            <!-- Section header with the title "All News" -->
+            <div class="section-header">
+                <h2>All News</h2>
+            </div>
+            <div class="row">
+                <!-- Loop through each news item passed from the view -->
+                {% for news_item in news %}
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Link to the detailed view of the specific news item -->
+                        <a href="{% url 'shop:news_detail' news_item.pk %}">
+                            <h3>{{ news_item.title }}</h3>
+                            <!-- Display the news item photo if it exists -->
+                            {% if news_item.photo %}
+                                <img src="{{ news_item.photo.url }}" alt="{{ news_item.title }}" class="img-fluid">
+                            {% endif %}
+                        </a>
+                        <!-- Display the news item content and its publication date -->
+                        <p>{{ news_item.content }}</p>
+                        <p>Published on: {{ news_item.created_at }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="row">
-            {% for news_item in news %}
-                <div class="col-lg-4 col-md-6">
-                    <a href="{% url 'shop:news_detail' news_item.pk %}">
-                        <h3>{{ news_item.title }}</h3>
-                        {% if news_item.photo %}
-                            <img src="{{ news_item.photo.url }}" alt="{{ news_item.title }}" class="img-fluid">
-                        {% endif %}
-                    </a>
-                    <p>{{ news_item.content }}</p>
-                    <p>Published on: {{ news_item.created_at }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

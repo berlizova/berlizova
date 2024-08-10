@@ -1,13 +1,16 @@
 <section id="contacts" class="section-bg">
     <div class="container">
+        <!-- Section header with title and introductory text -->
         <div class="section-header">
             <h2>Contact</h2>
             <p>Need Help? <span>Contact Us</span></p>
         </div>
         <div class="row contact-info">
+            <!-- Loop through the contact details provided in the 'contacts' context -->
             {% for contact in contacts %}
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                     <div class="info-box">
+                        <!-- Address Information -->
                         <i class="bx bx-map"></i>
                         <h3>Our Address</h3>
                         <p>{{ contact.address }}</p>
@@ -15,6 +18,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
                     <div class="info-box">
+                        <!-- Email Information -->
                         <i class="bx bx-envelope"></i>
                         <h3>Email Us</h3>
                         <p>{{ contact.email }}</p>
@@ -22,6 +26,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 d-flex align-items-stretch">
                     <div class="info-box">
+                        <!-- Phone Information -->
                         <i class="bx bx-phone-call"></i>
                         <h3>Call Us</h3>
                         <p>{{ contact.phone }}</p>
@@ -29,9 +34,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 d-flex align-items-stretch">
                     <div class="info-box">
+                        <!-- Opening Days Information -->
                         <i class="bx bx-time"></i>
                         <h3>Opening Days</h3>
                         <p>{{ contact.opening_days }}</p>
+                        <!-- Additional Information: Working hours and closed days -->
                         <div class="additional-info">
                             <p>Working Hours: {{ contact.working_hours }}</p>
                             <p>Closed Days: {{ contact.closed_days }}</p>

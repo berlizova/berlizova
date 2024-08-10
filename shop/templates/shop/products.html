@@ -1,19 +1,26 @@
 <section id="products" class="section-bg">
     <div class="container">
+        <!-- Section header displaying the title "Products" -->
         <div class="section-header">
             <h2>Products</h2>
         </div>
         <div class="row">
+            <!-- Loop through categories and their limited products -->
             {% for category, products in categories_with_limited_products %}
                 <div class="col-12">
+                    <!-- Category name linked to its detail page -->
                     <h3><a href="{% url 'shop:category_detail' category.pk %}">{{ category.name }}</a></h3>
                 </div>
+                <!-- Loop through the products within each category -->
                 {% for product in products %}
                     <div class="col-lg-4 col-md-6 product">
+                        <!-- Product link to its detail page -->
                         <a href="{% url 'shop:product_detail' product.pk %}">
+                            <!-- Display the product photo if available -->
                             {% if product.photo %}
                                 <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="img-fluid">
                             {% endif %}
+                            <!-- Display product name, description, and price -->
                             <h4>{{ product.name }}</h4>
                             <p>{{ product.description }}</p>
                             <p>Price: {{ product.price }} USD</p>

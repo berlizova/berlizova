@@ -1,25 +1,31 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="category-detail" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h2>{{ category.name }}</h2>
+    <!-- Section for displaying products within a specific category -->
+    <section id="category-detail" class="section-bg">
+        <div class="container">
+            <!-- Section header displaying the category name -->
+            <div class="section-header">
+                <h2>{{ category.name }}</h2>
+            </div>
+            <div class="row">
+                <!-- Loop through each product in the category -->
+                {% for product in products %}
+                    <div class="col-lg-4 col-md-6 product">
+                        <!-- Link to the product detail page -->
+                        <a href="{% url 'shop:product_detail' product.pk %}">
+                            <!-- If the product has a photo, display it -->
+                            {% if product.photo %}
+                                <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="img-fluid">
+                            {% endif %}
+                            <!-- Display the product name, description, and price -->
+                            <h3>{{ product.name }}</h3>
+                            <p>{{ product.description }}</p>
+                            <p>{{ product.price }} USD</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="row">
-            {% for product in products %}
-                <div class="col-lg-4 col-md-6 product">
-                    <a href="{% url 'shop:product_detail' product.pk %}">
-                        {% if product.photo %}
-                            <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="img-fluid">
-                        {% endif %}
-                        <h3>{{ product.name }}</h3>
-                        <p>{{ product.description }}</p>
-                        <p>{{ product.price }} USD</p>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

@@ -1,53 +1,66 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="register" class="book-a-table">
-    <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <h2>Registration</h2>
-        </div>
-        <div class="row g-0">
-            <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                <form action="{% url 'account:register' %}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-                    {% csrf_token %}
-                    <div class="row gy-4">
-                        <div class="col-lg-12">
-                            {{ form.username.label_tag }}<br>
-                            {{ form.username }}<br>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-12">
-                            {{ form.email.label_tag }}<br>
-                            {{ form.email }}<br>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-12">
-                            {{ form.password1.label_tag }}<br>
-                            {{ form.password1 }}<br>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-12">
-                            {{ form.password2.label_tag }}<br>
-                            {{ form.password2 }}<br>
-                            <div class="validate"></div>
-                        </div>
-                    </div>
-                    <div class="text-center"><button type="submit">Register</button></div>
-                </form>
+    <!-- Registration section -->
+    <section id="register" class="book-a-table">
+        <div class="container" data-aos="fade-up">
+            <!-- Section header -->
+            <div class="section-header">
+                <h2>Registration</h2>
             </div>
-        </div>
-        <div class="section-footer">
-            <p>Already registered? <a href="{% url 'account:login' %}">Login</a></p>
-        </div>
-        {% if messages %}
-            <div class="row">
-                <div class="col-lg-12">
-                    {% for message in messages %}
-                        <div class="alert alert-danger">{{ message }}</div>
-                    {% endfor %}
+            <div class="row g-0">
+                <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+                    <!-- Registration form -->
+                    <form action="{% url 'account:register' %}" method="post" role="form" class="php-email-form"
+                          data-aos="fade-up" data-aos-delay="100">
+                        {% csrf_token %}
+                        <div class="row gy-4">
+                            <!-- Username field -->
+                            <div class="col-lg-12">
+                                {{ form.username.label_tag }}<br>
+                                {{ form.username }}<br>
+                                <div class="validate"></div>
+                            </div>
+                            <!-- Email field -->
+                            <div class="col-lg-12">
+                                {{ form.email.label_tag }}<br>
+                                {{ form.email }}<br>
+                                <div class="validate"></div>
+                            </div>
+                            <!-- Password field -->
+                            <div class="col-lg-12">
+                                {{ form.password1.label_tag }}<br>
+                                {{ form.password1 }}<br>
+                                <div class="validate"></div>
+                            </div>
+                            <!-- Confirm password field -->
+                            <div class="col-lg-12">
+                                {{ form.password2.label_tag }}<br>
+                                {{ form.password2 }}<br>
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <!-- Submit button -->
+                        <div class="text-center">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        {% endif %}
-    </div>
-</section>
+            <!-- Login prompt for users who are already registered -->
+            <div class="section-footer">
+                <p>Already registered? <a href="{% url 'account:login' %}">Login</a></p>
+            </div>
+            <!-- Error messages display -->
+            {% if messages %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% for message in messages %}
+                            <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}

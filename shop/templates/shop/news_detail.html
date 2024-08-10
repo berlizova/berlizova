@@ -1,19 +1,22 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="news-detail" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h2>{{ news_item.title }}</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <p>{{ news_item.content }}</p>
-                {% if news_item.photo %}
-                    <img src="{{ news_item.photo.url }}" alt="{{ news_item.title }}" class="img-fluid">
-                {% endif %}
+    <section id="news-detail" class="section-bg">
+        <div class="container">
+            <!-- Section header displaying the title of the news item -->
+            <div class="section-header">
+                <h2>{{ news_item.title }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Display the content of the news item -->
+                    <p>{{ news_item.content }}</p>
+                    <!-- If the news item has an associated photo, display it -->
+                    {% if news_item.photo %}
+                        <img src="{{ news_item.photo.url }}" alt="{{ news_item.title }}" class="img-fluid">
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

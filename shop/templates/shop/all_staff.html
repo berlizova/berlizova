@@ -1,25 +1,33 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="all-staff" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h2>All Staff</h2>
+    <!-- Section for displaying all staff members -->
+    <section id="all-staff" class="section-bg">
+        <div class="container">
+            <!-- Section header with the title "All Staff" -->
+            <div class="section-header">
+                <h2>All Staff</h2>
+            </div>
+            <div class="row">
+                <!-- Loop through each staff member passed from the view -->
+                {% for member in staff %}
+                    <div class="col-lg-4 col-md-6 person">
+                        <!-- Link to the detailed view of the specific staff member -->
+                        <a href="{% url 'staff_detail' member.pk %}">
+                            <!-- Display the staff member photo if it exists -->
+                            {% if member.photo %}
+                                <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
+                            {% endif %}
+                            <!-- Display the staff member's name -->
+                            <h3>{{ member.name }}</h3>
+                        </a>
+                        <!-- Display the staff member's position -->
+                        <p>{{ member.position }}</p>
+                        <!-- Display the staff member's bio with HTML rendered as safe -->
+                        <p>{{ member.bio|safe }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="row">
-            {% for member in staff %}
-                <div class="col-lg-4 col-md-6 person">
-                    <a href="{% url 'staff_detail' member.pk %}">
-                        {% if member.photo %}
-                            <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
-                        {% endif %}
-                        <h3>{{ member.name }}</h3>
-                    </a>
-                    <p>{{ member.position }}</p>
-                    <p>{{ member.bio|safe }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

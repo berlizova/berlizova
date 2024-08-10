@@ -1,20 +1,24 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section id="staff-detail" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h2>{{ staff_member.name }}</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <p>{{ staff_member.position }}</p>
-                <p>{{ staff_member.bio|safe }}</p>
-                {% if staff_member.photo %}
-                    <img src="{{ staff_member.photo.url }}" alt="{{ staff_member.name }}" class="img-fluid">
-                {% endif %}
+    <section id="staff-detail" class="section-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>{{ staff_member.name }}</h2>
+                <!-- Display the staff member's name as the section title -->
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p>{{ staff_member.position }}</p>
+                    <!-- Display the staff member's position -->
+                    <p>{{ staff_member.bio|safe }}</p>
+                    <!-- Display the staff member's biography with safe HTML rendering -->
+                    {% if staff_member.photo %}
+                        <img src="{{ staff_member.photo.url }}" alt="{{ staff_member.name }}" class="img-fluid">
+                        <!-- Display the staff member's photo if available -->
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
